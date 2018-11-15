@@ -1,0 +1,15 @@
+.jumbotron{
+    height: 100%;
+    background-color: #AA443C;
+}
+.container{
+    text-align: center;
+}
+.searchBar{
+    width: 600px;
+    text-align: left;
+    display: inline-block;
+}
+.wrapper{
+    text-align: center;
+}
