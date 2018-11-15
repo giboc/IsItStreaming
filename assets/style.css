@@ -5,7 +5,10 @@
 .container{
     text-align: center;
     border: red solid 2px;
-
+}
+.wrapper{
+    text-align: center;
+    border: green solid 2px;
 }
 .searchBar{
     width: 500px;
