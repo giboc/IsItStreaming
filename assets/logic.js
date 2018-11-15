@@ -20,7 +20,7 @@ $("document").ready(function(){
             videoDisp.attr("frameborder",0);
             videoDisp.attr("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
             
-            
+            $("#video_display").append(videoDisp);
         });
     });
 });
