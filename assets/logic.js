@@ -2,23 +2,34 @@ const API_KEY = "AIzaSyBCVesxm4Kuui6ID14HPwDSYETR9CJeZ54"  //key=
 const OMDB_KEY = "8cfc61d6" //apikey=
 const YT_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet"
 const OMDB_URL = "https://www.omdbapi.com/?"
+const GUIDEBOX_URL = "http://api-public.guidebox.com/v2/search?"
+const GUIDEBOX_KEY = "A";
 
 //&q=%221roy4o4tqQM%22&key=AIzaSyBCVesxm4Kuui6ID14HPwDSYETR9CJeZ54
 
 $("document").ready(function () {
+
     $("form").submit(function (event) {
         event.preventDefault();
+        $("#searchResult").html("");
         var searchQuery = $("#mySearch").val();
-
+        
         $.ajax({
             // url: YT_URL + searchQuery + "&key=" + API_KEY,
             url: OMDB_URL + "apikey=" + OMDB_KEY + "&s=" + searchQuery,
             method: "GET"
         }).then(function (response) {
+            console.log(response);
             for (var i = 0; i < 10; i++) {
                 var poster = $("<img>");
-                poster.attr("src", response.Search[i].Poster);
-
+                if (response.Search[i].Poster === "N/A")
+                    poster.attr("src", "assets/images/nopicture.gif");
+                else
+                    poster.attr("src", response.Search[i].Poster);
+                poster.attr("alt",response.Search[i].Title); 
+                poster.attr("id",response.Search[i].imdbID);
+                console.log(response.Search[i].Type);
+                poster.attr("type",response.Search[i].Type);
                 $("#searchResult").append(poster);
             }
         });
@@ -36,6 +47,21 @@ $("document").ready(function () {
         // videoDisp.attr("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
 
         // $("#video_display").append(videoDisp);
+    });
+
+    $("body").on("click","img",function(){
+        
+        var guideboxType = $(this).attr("type");
+        if (guideboxType === "series")
+            guideboxQueryURL = "show"
+        if(guideboxType === "show" || guideboxType === "movie"){
+            console.log(this.id);
+            console.log(guideboxType);
+        }
+        else
+            console.log("Not streamable media.");
+            //Invalid search type.
+
     });
 });
 
