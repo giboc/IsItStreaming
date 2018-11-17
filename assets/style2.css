@@ -1,0 +1,28 @@
+*{
+	margin:0;
+	Padding: 0;
+	box-sizing: border-box;
+}
+body{
+    background-color: rgb(37, 146, 110);  
+}
+
+
+.container{
+    width: 100vw;
+    margin-left: 0;
+}
+nav{
+    width: 100vw;
+    height: 80px;
+    margin-left: 0;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 3px;
+    color: white;
+}
+.navbar-brand{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
