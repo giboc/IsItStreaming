@@ -8,15 +8,18 @@ const GUIDEBOX_KEY = "A";
 //&q=%221roy4o4tqQM%22&key=AIzaSyBCVesxm4Kuui6ID14HPwDSYETR9CJeZ54
 
 $("document").ready(function () {
-
     $("form").submit(function (event) {
+
         event.preventDefault();
-        $("#searchResult").html("");
         var searchQuery = $("#mySearch").val();
-        
+        window.localStorage.setItem("searchQuery", searchQuery);
+        window.location.href = "dummy.html";
+    });
+
+    if (localStorage.getItem("searchQuery") != "") {
         $.ajax({
             // url: YT_URL + searchQuery + "&key=" + API_KEY,
-            url: OMDB_URL + "apikey=" + OMDB_KEY + "&s=" + searchQuery,
+            url: OMDB_URL + "apikey=" + OMDB_KEY + "&s=" + window.localStorage.getItem("searchQuery"),
             method: "GET"
         }).then(function (response) {
             console.log(response);
@@ -26,44 +29,47 @@ $("document").ready(function () {
                     poster.attr("src", "assets/images/nopicture.gif");
                 else
                     poster.attr("src", response.Search[i].Poster);
-                poster.attr("alt",response.Search[i].Title); 
-                poster.attr("id",response.Search[i].imdbID);
+                poster.attr("alt", response.Search[i].Title);
+                poster.attr("id", response.Search[i].imdbID);
                 console.log(response.Search[i].Type);
-                poster.attr("type",response.Search[i].Type);
+                poster.attr("type", response.Search[i].Type);
                 $("#searchResult").append(poster);
             }
+            localStorage.setItem("searchQuery","");
         });
+    }
 
 
 
 
 
+    // var videoDisp = $("<iframe allowfullscreen>");
+    // videoDisp.attr("width",560);
+    // videoDisp.attr("height",315);
+    // videoDisp.attr("src","https://www.youtube.com/embed/"+response.items[0].id.videoId);
+    // videoDisp.attr("frameborder",0);
+    // videoDisp.attr("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
 
-        // var videoDisp = $("<iframe allowfullscreen>");
-        // videoDisp.attr("width",560);
-        // videoDisp.attr("height",315);
-        // videoDisp.attr("src","https://www.youtube.com/embed/"+response.items[0].id.videoId);
-        // videoDisp.attr("frameborder",0);
-        // videoDisp.attr("allow","accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
-
-        // $("#video_display").append(videoDisp);
-    });
-
-    $("body").on("click","img",function(){
-        
-        var guideboxType = $(this).attr("type");
-        if (guideboxType === "series")
-            guideboxQueryURL = "show"
-        if(guideboxType === "show" || guideboxType === "movie"){
-            console.log(this.id);
-            console.log(guideboxType);
-        }
-        else
-            console.log("Not streamable media.");
-            //Invalid search type.
-
-    });
+    // $("#video_display").append(videoDisp);
 });
+
+$("body").on("click", "img", function () {
+
+    var guideboxType = $(this).attr("type");
+    if (guideboxType == "series")
+        guideboxType = "show"
+    if (guideboxType === "show" || guideboxType === "movie") {
+        console.log(this.id);
+        console.log(guideboxType);
+    }
+    else{
+        console.log("Not streamable media.");
+        console.log(guideboxType); 
+    }
+    //Invalid search type.
+
+});
+
 
 
 
