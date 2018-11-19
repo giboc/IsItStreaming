@@ -69,9 +69,16 @@ $("body").on("click", "img", function () {
             method: "GET"
         }).then(function (response) {
             guideboxID = response.id;
+            var seasons = "";
+            if  (guideboxType === "show"){
+                guideboxType = shows;
+                seasons = "/available_content";
+            }
+            if (guideboxType === "movie")
+                guideboxType = "movies";
             $.ajax({
                 // url: YT_URL + searchQuery + "&key=" + API_KEY,
-                url: "https://cors-anywhere.herokuapp.com/https://api-public.guidebox.com/v2/movies/" + guideboxID + "?api_key=" + GUIDEBOX_KEY,
+                url: "https://cors-anywhere.herokuapp.com/https://api-public.guidebox.com/v2/" + guideboxType + "/" + guideboxID + seasons + "?api_key=" + GUIDEBOX_KEY,
                 method: "GET",
                 dataType: "json",
                 // this headers section is necessary for CORS-anywhere
