@@ -10,7 +10,7 @@ body{
 
 .container{
     width: 100vw;
-    margin-left: 0;
+    margin-left: -15px;
 }
 nav{
     width: 100vw;
