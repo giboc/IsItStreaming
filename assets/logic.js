@@ -2,7 +2,7 @@ const API_KEY = "AIzaSyBCVesxm4Kuui6ID14HPwDSYETR9CJeZ54"  //key=
 const OMDB_KEY = "8cfc61d6" //apikey=
 const YT_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet"
 const OMDB_URL = "https://www.omdbapi.com/?"
-const GUIDEBOX_URL = "http://api-public.guidebox.com/v2/search?"
+const GUIDEBOX_URL = "https://api-public.guidebox.com/v2/search?"
 const GUIDEBOX_KEY = "ec97bcc66bfa6f1fc5d73b51e4ca3a5c3c53f058";
 var guideboxID;
 
