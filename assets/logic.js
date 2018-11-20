@@ -71,14 +71,14 @@ $("body").on("click", "img", function () {
             guideboxID = response.id;
             $.ajax({
                 // url: YT_URL + searchQuery + "&key=" + API_KEY,
-                url: "https://cors-anywhere.herokuapp.com/https://api-public.guidebox.com/v2/movies/" + guideboxID + "?api_key=" + GUIDEBOX_KEY,
-                //url: "https://api-public.guidebox.com/v2/movies/" + guideboxID + "?api_key=" + GUIDEBOX_KEY,
+                //url: "https://cors-anywhere.herokuapp.com/https://api-public.guidebox.com/v2/movies/" + guideboxID + "?api_key=" + GUIDEBOX_KEY,
+                url: "https://api-public.guidebox.com/v2/movies/" + guideboxID + "?api_key=" + GUIDEBOX_KEY,
                 method: "GET",
-                dataType: "json",
+                dataType: "json"//,
                 // this headers section is necessary for CORS-anywhere
-                headers: {
-                    "x-requested-with": "xhr"
-                }
+                //headers: {
+                //    "x-requested-with": "xhr"
+                //}
             }).then(function (response) {
                 console.log(response);
 
